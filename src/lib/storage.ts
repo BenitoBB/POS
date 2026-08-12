@@ -5,6 +5,7 @@ const APPEARANCE_KEY = 'pos_appearance';
 
 // Account items backup
 export function saveAccountItemsLocal(accountId: string, items: AccountItem[]) {
+  if (typeof window === 'undefined') return;
   try {
     localStorage.setItem(
       `${STORAGE_PREFIX}${accountId}`,
@@ -16,6 +17,7 @@ export function saveAccountItemsLocal(accountId: string, items: AccountItem[]) {
 }
 
 export function getAccountItemsLocal(accountId: string): AccountItem[] | null {
+  if (typeof window === 'undefined') return null;
   try {
     const data = localStorage.getItem(`${STORAGE_PREFIX}${accountId}`);
     if (!data) return null;
@@ -27,6 +29,7 @@ export function getAccountItemsLocal(accountId: string): AccountItem[] | null {
 }
 
 export function clearAccountItemsLocal(accountId: string) {
+  if (typeof window === 'undefined') return;
   try {
     localStorage.removeItem(`${STORAGE_PREFIX}${accountId}`);
   } catch {
@@ -36,6 +39,7 @@ export function clearAccountItemsLocal(accountId: string) {
 
 // Appearance settings
 export function saveAppearance(settings: AppearanceSettings) {
+  if (typeof window === 'undefined') return;
   try {
     localStorage.setItem(APPEARANCE_KEY, JSON.stringify(settings));
   } catch {
@@ -44,6 +48,7 @@ export function saveAppearance(settings: AppearanceSettings) {
 }
 
 export function getAppearance(): AppearanceSettings | null {
+  if (typeof window === 'undefined') return null;
   try {
     const data = localStorage.getItem(APPEARANCE_KEY);
     if (!data) return null;
