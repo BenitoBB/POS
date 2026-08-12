@@ -23,7 +23,7 @@ export default function AccountDetail({ account, onCloseDetail }: AccountDetailP
   const [isEditingLabel, setIsEditingLabel] = useState(false);
   const [labelValue, setLabelValue] = useState(account.label);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [confirmAction, setConfirmAction] = useState<'saldar' | 'cancelar' | 'eliminar' | null>(null);
+  const [confirmAction, setConfirmAction] = useState<'pagar' | 'cancelar' | 'eliminar' | null>(null);
 
   // Label edit handler
   const handleSaveLabel = async () => {
@@ -42,7 +42,7 @@ export default function AccountDetail({ account, onCloseDetail }: AccountDetailP
     });
   };
 
-  // Close account handler (Saldar / Cancelar)
+  // Close account handler (Pagar / Cancelar)
   const handleExecuteClose = async (status: 'pagada' | 'cancelada') => {
     await closeAccountMutation.mutateAsync({
       id: account.id,
@@ -251,7 +251,7 @@ export default function AccountDetail({ account, onCloseDetail }: AccountDetailP
           <div className="grid grid-cols-3 gap-2.5">
             {/* Pagar button */}
             <button
-              onClick={() => setConfirmAction('saldar')}
+              onClick={() => setConfirmAction('pagar')}
               disabled={items.length === 0}
               className="btn btn-success py-3 col-span-2 text-sm sm:text-base font-bold disabled:opacity-40 disabled:cursor-not-allowed"
             >
@@ -286,14 +286,14 @@ export default function AccountDetail({ account, onCloseDetail }: AccountDetailP
           <div className="fixed inset-0 z-[60] bg-[var(--bg-overlay)] backdrop-blur-sm flex items-center justify-center p-4" onClick={() => setConfirmAction(null)}>
             <div className="modal-content p-6 space-y-4 max-w-sm" onClick={(e) => e.stopPropagation()}>
               <h3 className="text-lg font-bold">
-                {confirmAction === 'saldar' && '¿Saldar esta cuenta?'}
+                {confirmAction === 'pagar' && '¿Pagar esta cuenta?'}
                 {confirmAction === 'cancelar' && '¿Cancelar esta cuenta?'}
-                {confirmAction === 'eliminar' && '¿Eliminar este slot de cuenta?'}
+                {confirmAction === 'eliminar' && '¿Eliminar esta cuenta?'}
               </h3>
               <p className="text-xs text-[var(--text-secondary)]">
-                {confirmAction === 'saldar' && `Se registrará la venta de ${formatCurrency(total)} pagada en efectivo. El slot "${account.label}" se reiniciará a $0.`}
+                {confirmAction === 'pagar' && `Se registrará la venta de ${formatCurrency(total)} pagada en efectivo. La cuenta "${account.label}" se reiniciará a $0.`}
                 {confirmAction === 'cancelar' && `La cuenta "${account.label}" se guardará en el historial como CANCELADA ($0) y se reiniciará.`}
-                {confirmAction === 'eliminar' && `Se eliminará el slot "${account.label}" de la pantalla.`}
+                {confirmAction === 'eliminar' && `Se eliminará la cuenta "${account.label}" de la pantalla.`}
               </p>
 
               <div className="flex gap-2 pt-2">
@@ -303,13 +303,13 @@ export default function AccountDetail({ account, onCloseDetail }: AccountDetailP
                 >
                   Volver
                 </button>
-                {confirmAction === 'saldar' && (
+                {confirmAction === 'pagar' && (
                   <button
                     onClick={() => handleExecuteClose('pagada')}
                     disabled={closeAccountMutation.isPending}
                     className="btn btn-success flex-1 py-2 text-xs"
                   >
-                    {closeAccountMutation.isPending ? 'Saldando...' : 'Saldar'}
+                    {closeAccountMutation.isPending ? 'Pagando...' : 'Pagar'}
                   </button>
                 )}
                 {confirmAction === 'cancelar' && (

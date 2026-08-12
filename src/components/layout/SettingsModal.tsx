@@ -9,7 +9,8 @@ interface SettingsModalProps {
 }
 
 const PALETTES: { id: ThemePalette; name: string; desc: string; badge?: string }[] = [
-  { id: 'dark', name: 'Oscuro Premium', desc: 'Fondo oscuro con acentos de color' },
+  { id: 'orange-green', name: 'Naranja & Verde', desc: 'Fondo claro con acentos en naranja apetitoso y verde fresco', badge: 'Por defecto' },
+  { id: 'dark', name: 'Oscuro Azulado', desc: 'Fondo oscuro con acentos indigo' },
   { id: 'light', name: 'Claro Limpio', desc: 'Fondo claro de alto contraste' },
   { id: 'protanopia', name: 'Protanopia', desc: 'Ajustado para insensibilidad al rojo', badge: 'Accesible' },
   { id: 'deuteranopia', name: 'Deuteranopia', desc: 'Ajustado para insensibilidad al verde', badge: 'Accesible' },

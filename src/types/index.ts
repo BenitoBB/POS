@@ -51,7 +51,7 @@ export interface AddItemData {
 }
 
 // Theme types
-export type ThemePalette = 'light' | 'dark' | 'protanopia' | 'deuteranopia' | 'tritanopia';
+export type ThemePalette = 'orange-green' | 'dark' | 'light' | 'protanopia' | 'deuteranopia' | 'tritanopia';
 
 export interface AppearanceSettings {
   palette: ThemePalette;
@@ -60,7 +60,7 @@ export interface AppearanceSettings {
 }
 
 export const DEFAULT_APPEARANCE: AppearanceSettings = {
-  palette: 'dark',
+  palette: 'orange-green',
   fontSize: 16,
   fontWeight: 400,
 };

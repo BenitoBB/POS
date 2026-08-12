@@ -17,11 +17,10 @@ export default function AccountCard({ account, isSelected, onSelect }: AccountCa
   return (
     <button
       onClick={onSelect}
-      className={`w-full text-left p-5 rounded-2xl border transition-all duration-200 cursor-pointer flex flex-col justify-between min-h-[140px] relative overflow-hidden group ${
-        isSelected
-          ? 'border-[var(--accent)] bg-[var(--accent-glow)] shadow-lg ring-2 ring-[var(--accent)]'
-          : 'border-[var(--border)] bg-[var(--glass-bg)] hover:bg-[var(--bg-card-hover)] hover:border-[var(--border-hover)]'
-      }`}
+      className={`w-full text-left p-5 rounded-2xl border transition-all duration-200 cursor-pointer flex flex-col justify-between min-h-[140px] relative overflow-hidden group ${isSelected
+        ? 'border-[var(--accent)] bg-[var(--accent-glow)] shadow-lg ring-2 ring-[var(--accent)]'
+        : 'border-[var(--border)] bg-[var(--glass-bg)] hover:bg-[var(--bg-card-hover)] hover:border-[var(--border-hover)]'
+        }`}
     >
       {/* Active Indicator Pulse */}
       {itemCount > 0 && (
@@ -36,9 +35,6 @@ export default function AccountCard({ account, isSelected, onSelect }: AccountCa
       {/* Header / Account Label */}
       <div>
         <div className="flex items-center gap-2 mb-1">
-          <span className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
-            Slot
-          </span>
           <span className="badge badge-success text-[10px]">Abierta</span>
         </div>
         <h3 className="text-xl font-extrabold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors truncate">
@@ -50,20 +46,19 @@ export default function AccountCard({ account, isSelected, onSelect }: AccountCa
       <div className="flex items-end justify-between mt-4 pt-3 border-t border-[var(--border)]">
         <div>
           <span className="text-[11px] text-[var(--text-muted)] block">
-            {itemCount === 1 ? '1 ítem' : `${itemCount} ítems`}
+            {itemCount === 1 ? '1 producto' : `${itemCount} productos`}
           </span>
           <span className="text-2xl font-black font-mono tracking-tight text-[var(--text-primary)]">
             {formatCurrency(total)}
           </span>
         </div>
 
-        <div className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all ${
-          isSelected
-            ? 'bg-[var(--accent)] text-white'
-            : 'bg-[var(--glass-bg)] text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] group-hover:bg-[var(--border)]'
-        }`}>
+        <div className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all ${isSelected
+          ? 'bg-[var(--accent)] text-white'
+          : 'bg-[var(--glass-bg)] text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] group-hover:bg-[var(--border)]'
+          }`}>
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="m9 18 6-6-6-6"/>
+            <path d="m9 18 6-6-6-6" />
           </svg>
         </div>
       </div>

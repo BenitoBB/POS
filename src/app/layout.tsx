@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={`${inter.variable} h-full antialiased`} data-theme="dark">
+    <html lang="es" className={`${inter.variable} h-full antialiased`} data-theme="orange-green">
       <body className="min-h-full flex flex-col bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans">
         <QueryProvider>
           <ThemeProvider>
