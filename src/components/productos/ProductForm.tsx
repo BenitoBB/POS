@@ -110,12 +110,13 @@ export default function ProductForm({ product, isOpen, onClose }: ProductFormPro
             </label>
             <input
               type="number"
+              inputMode="decimal"
               step="0.50"
               min="0"
               placeholder="0.00"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-              className="input font-mono"
+              className="input font-mono text-lg font-bold"
             />
           </div>
 

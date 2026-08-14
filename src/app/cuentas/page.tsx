@@ -31,7 +31,7 @@ export default function CuentasPage() {
             Cuentas Activas
           </h1>
           <p className="text-sm text-[var(--text-muted)]">
-            Toca una cuenta para abrirla, agregar productos o saldar la venta
+            Toca una cuenta para abrirla, agregar productos o pagar la venta
           </p>
         </div>
 

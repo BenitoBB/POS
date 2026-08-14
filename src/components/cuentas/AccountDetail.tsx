@@ -6,6 +6,7 @@ import { useUpdateAccountLabel, useCloseAccount, useDeleteAccount } from '@/lib/
 import { formatCurrency, formatTime } from '@/lib/utils';
 import type { Account } from '@/types';
 import AddProductModal from './AddProductModal';
+import PaymentModal from './PaymentModal';
 
 interface AccountDetailProps {
   account: Account;
@@ -281,17 +282,25 @@ export default function AccountDetail({ account, onCloseDetail }: AccountDetailP
           </div>
         </div>
 
-        {/* Confirmation Modal (z-[60]) */}
-        {confirmAction && (
+        {/* Payment Modal with Change Calculator */}
+        <PaymentModal
+          accountLabel={account.label}
+          total={total}
+          isOpen={confirmAction === 'pagar'}
+          isPending={closeAccountMutation.isPending}
+          onConfirmPay={() => handleExecuteClose('pagada')}
+          onClose={() => setConfirmAction(null)}
+        />
+
+        {/* Confirmation Modal for Cancel/Delete (z-[60]) */}
+        {(confirmAction === 'cancelar' || confirmAction === 'eliminar') && (
           <div className="fixed inset-0 z-[60] bg-[var(--bg-overlay)] backdrop-blur-sm flex items-center justify-center p-4" onClick={() => setConfirmAction(null)}>
             <div className="modal-content p-6 space-y-4 max-w-sm" onClick={(e) => e.stopPropagation()}>
               <h3 className="text-lg font-bold">
-                {confirmAction === 'pagar' && '¿Pagar esta cuenta?'}
                 {confirmAction === 'cancelar' && '¿Cancelar esta cuenta?'}
                 {confirmAction === 'eliminar' && '¿Eliminar esta cuenta?'}
               </h3>
               <p className="text-xs text-[var(--text-secondary)]">
-                {confirmAction === 'pagar' && `Se registrará la venta de ${formatCurrency(total)} pagada en efectivo. La cuenta "${account.label}" se reiniciará a $0.`}
                 {confirmAction === 'cancelar' && `La cuenta "${account.label}" se guardará en el historial como CANCELADA ($0) y se reiniciará.`}
                 {confirmAction === 'eliminar' && `Se eliminará la cuenta "${account.label}" de la pantalla.`}
               </p>
@@ -303,15 +312,6 @@ export default function AccountDetail({ account, onCloseDetail }: AccountDetailP
                 >
                   Volver
                 </button>
-                {confirmAction === 'pagar' && (
-                  <button
-                    onClick={() => handleExecuteClose('pagada')}
-                    disabled={closeAccountMutation.isPending}
-                    className="btn btn-success flex-1 py-2 text-xs"
-                  >
-                    {closeAccountMutation.isPending ? 'Pagando...' : 'Pagar'}
-                  </button>
-                )}
                 {confirmAction === 'cancelar' && (
                   <button
                     onClick={() => handleExecuteClose('cancelada')}

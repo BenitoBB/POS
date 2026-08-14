@@ -109,7 +109,7 @@ export default function HistoryList() {
             <polyline points="12 6 12 12 16 14"/>
           </svg>
           <p className="text-base font-semibold">Sin registros en este periodo</p>
-          <p className="text-xs text-[var(--text-muted)] mt-1">Las cuentas saldadas o canceladas aparecerán aquí</p>
+          <p className="text-xs text-[var(--text-muted)] mt-1">Las cuentas pagadas o canceladas aparecerán aquí</p>
         </div>
       ) : (
         <div className="space-y-3 stagger-children">
